@@ -354,6 +354,7 @@ def split_paired(paired_bed, paired_bed1, paired_bed2,debug):
 def reduce_reads(read_file,new_readfile,debug):
 	#Find reads aligned to same position but different TE_IDs (overlapping flanks) and merge
 	prev = False
+	prev_TE_ID = None
 	with open(read_file,'r') as infile:
 		with open(new_readfile,'w') as outfile:
 			for line in infile:
@@ -375,7 +376,8 @@ def reduce_reads(read_file,new_readfile,debug):
 						prev= current
 						prev_TE_ID = current.TE_ID
 	#end of loop
-			prev.line_split[15]  = prev_TE_ID
+			if prev_TE_ID is not None:
+				prev.line_split[15]  = prev_TE_ID
 			prev.line = "\t".join(prev.line_split)
 			outfile.writelines(prev.line + "\n")
 	if not debug:
