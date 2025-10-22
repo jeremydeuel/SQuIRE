@@ -1228,7 +1228,10 @@ def uniquecount(tempBED,RepCalc_dict,read_locdict):
 					RepCalc_dict[TE_ID].add_multi_u(bed_line.Read_strand,1)
 					RepCalc_dict[TE_ID].get_fragment(bed_line.Read_geno_start,bed_line.Read_geno_stop,bed_line.Read_strand)
 					RepCalc_dict[TE_ID].add_read(bed_line.Read_ID,bed_line.Read_strand)
-	unique_fragavg=unique_fragsum/int(unique_linecount)
+	if int(unique_linecount)>0:
+		unique_fragavg=unique_fragsum/int(unique_linecount)
+	else:
+		unique_fragavg=0
 	return unique_fragavg
 
 def multicount(tempBED,RepCalc_dict, multidict,read_locdict):
