@@ -378,8 +378,8 @@ def reduce_reads(read_file,new_readfile,debug):
 	#end of loop
 			if prev_TE_ID is not None:
 				prev.line_split[15]  = prev_TE_ID
-			prev.line = "\t".join(prev.line_split)
-			outfile.writelines(prev.line + "\n")
+				prev.line = "\t".join(prev.line_split)
+				outfile.writelines(prev.line + "\n")
 	if not debug:
 		os.unlink(read_file)
 
