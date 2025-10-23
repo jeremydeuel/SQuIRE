@@ -168,7 +168,7 @@ def Stringtie(bamfile,outfolder,basename,strandedness,pthreads,gtf, verbosity,ou
     StringTiecommand=" ".join(StringTiecommand_list)
     s = sp.call(["/bin/sh", "-c", StringTiecommand])
     print("debug: proceeded with stringtie")
-	print(s)
+    print(s)
 
 			
 class gtfline(object):
