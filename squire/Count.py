@@ -304,13 +304,14 @@ def sort_temp(tempfile, field,sorted_tempfile,debug):
 		os.unlink(tempfile)
 
 def get_header(bamfile,headerfile):
-	samtoolscommand_list = ["samtools","view","-H", bamfile, ">",headerfile]
+	samtoolscommand_list = ["samtools","view","-H", "\""+bamfile+"\"", ">",headerfile]
 	samtoolscommand = " ".join(samtoolscommand_list)
 	sp.check_call(["/bin/sh", "-c", samtoolscommand])
 
 def is_paired(bamfile,basename,tempfolder,debug):
 	bam_temp = make_tempfile(basename,"bam_header",tempfolder)
 	get_header(bamfile,bam_temp)
+	paired = None
 	with open(bam_temp,'r') as header:
 		for line in header:
 			if line.startswith("@CO"):
@@ -322,6 +323,8 @@ def is_paired(bamfile,basename,tempfolder,debug):
 					paired = False
 	if not debug:
 		os.unlink(bam_temp)
+	if paired is None:
+		raise ValueError("bam file "+bamfile+" does not contain a @CO header section, thus it can not be inferred if these are paired end reads or not.")
 	return paired
 
 
