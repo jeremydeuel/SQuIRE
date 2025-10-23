@@ -166,8 +166,9 @@ def Stringtie(bamfile,outfolder,basename,strandedness,pthreads,gtf, verbosity,ou
         outputs= outputs + ["-A", out_abund]
     StringTiecommand_list = ["stringtie"] + runoptions + TEoptions + outputs + inputs
     StringTiecommand=" ".join(StringTiecommand_list)
-    sp.check_call(["/bin/sh", "-c", StringTiecommand])
+    s = sp.call(["/bin/sh", "-c", StringTiecommand])
     print("debug: proceeded with stringtie")
+	print(s)
 
 			
 class gtfline(object):
