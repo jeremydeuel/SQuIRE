@@ -259,6 +259,7 @@ The following information should be included in the file:
 
   - Quantifies RNAseq reads aligning to TEs and genes
   - Outputs counts for RefSeq genes and TEs at the locus and subfamily levels
+  - Quantifies one bam file at a time.
 
 <img align="center" width="825" height="600" src="images/Count_overview.png">
 
@@ -272,9 +273,10 @@ The following information should be included in the file:
   -c <folder>, --clean_folder <folder>|Folder location of outputs from SQuIRE Clean (optional, default = 'squire_clean')
   -o <folder>, --count_folder <folder>|Destination folder for output files(optional, default = 'squire_count')
   -t <folder>, --tempfolder <folder>|Folder for tempfiles (optional; default=count_folder')
+  -i <folder>, --count_folder <folder>|Folder location of outputs from SQuIRE Count (optional, default = 'squire_count')
   -f <folder>, --fetch_folder <folder>|Folder location of outputs from SQuIRE Fetch (optional, default = 'squire_fetch')
   -r <int>, --read_length <int>|Read length (if trim3 selected, after trimming; required).
-  -n <str>, --name <str>|Common basename for input files (required if more than one bam file in map_folder)
+  -n <str>, --name <str>|Common basename for input file (required if more than one bam file in map_folder)
   -b <build>, --build <build>|UCSC designation for genome build, eg. 'hg38' (required if more than 1 build in clean_folder)
   -p <int>, --pthreads <int>|Launch <int> parallel threads(optional; default='1')
   -s <int>, --strandedness <int>|'0' if unstranded eg Standard Illumina, 1 if first- strand eg Illumina Truseq, dUTP, NSR, NNSR, 2 if second-strand, eg Ligation, Standard SOLiD (optional,default=0)
